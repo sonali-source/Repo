@@ -1,4 +1,5 @@
 FROM openjdk:8-alpine
+MAINTAINER Prakash
 
 # Required for starting application up.
 RUN apk update && apk add /bin/sh
