@@ -17,6 +17,26 @@ node{
         sh 'docker build -t pkw0301/spring-boot-mongo .'
     }
     
+
+//  stage('Twistlock Scan') {
+//      steps {
+//     Identify vulnerabilities for the docker images
+//    twistlockScan ca: '', cert: '', compliancePolicy: 'warn', containerized: false, dockerAddress: 'add your configured add', gracePeriodDays: 7, ignoreImageBuildTime: false,repository: 'your-repo-url', image: 'your docker container url', tag: 'latest ', key: '', logLevel: 'true', policy: 'warn',  requirePackageUpdate: false, timeout: 10
+//    }
+//    }
+//  stage('Twistlock Publish') {
+//            steps {
+//            //Publish twistlock analysis result
+//                twistlockPublish ca: '', cert: '', dockerAddress: 'add your configured add', key: '',gracePeriodDays: 7, image: 'your docker container url', logLevel: 'true', timeout: 10
+//            }
+//        }
+
+
+
+
+
+
+    
     stage {'push docker image to ACr/Dcokerhub'}
     { steps { // This step should not normally be used in your script. Consult the inline help for details.
 withDockerRegistry(credentialsId: 'DOCKERHUB', url: 'https://index.docker.io/v1/') {
