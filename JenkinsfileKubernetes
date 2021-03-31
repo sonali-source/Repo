@@ -11,6 +11,9 @@ node{
       
     } 
     
+   // stage ('publish artifact to jrog repo')
+   // { steps {  } }
+    
     
     stage('Build Docker Image'){
         sh 'docker rmi -f pkw0301/spring-boot-mongo'
