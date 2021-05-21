@@ -1,39 +1,16 @@
-pipeline {
-    agent {
-        docker {
-            image 'maven:3.8.1-adoptopenjdk-11' 
-            args '-v /root/.m2:/root/.m2' 
-        }
+pipeline
+{
+    agent any
+    stages
+    {
+        stage('scm checkout')
+  { steps {  git branch: 'master', url: 'https://github.com/prakashk0301/maven-project'  } }
+    
+    
+    stage ('docker build and push')
+  {steps 
+  {sh 'kubernetesDeploy configs: 'springBootMongo.yml', kubeConfig: [path: ''], kubeconfigId: 'KUBERNETES_CLUSTER_CONFIG', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']'}
+    
     }
-    stages {
-        stage('Build') { 
-            steps {
-                sh 'mvn -B -DskipTests clean package' 
-            }
-        }
-    }
+
 }
-    
-   
-    
-    stage('Build Docker Image'){
-        steps {
-        sh 'docker rmi -f pkw0301/spring-boot-mongo'
-        sh 'docker build -t pkw0301/spring-boot-mongo .'
-    }}
-    
-
-    
-    stage {'push docker image to ACr/Dcokerhub'}
-    { steps { // This step should not normally be used in your script. Consult the inline help for details.
-withDockerRegistry(credentialsId: 'DOCKERHUB', url: 'https://index.docker.io/v1/') {
-   sh 'docker push pkw0301/spring-boot-mongo'
-} }}
-     
-     
-    stage ('deploy-k8s')
-    { steps { sh 'kubernetesDeploy configs: 'springBootMongo.yml', kubeConfig: [path: ''], kubeconfigId: 'KUBERNETES_CLUSTER_CONFIG', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']'}}
-	 
-    
-
-
