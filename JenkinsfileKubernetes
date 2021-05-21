@@ -5,11 +5,15 @@ node{
     }
     
     stage(" Maven Clean Package")
-    { steps { withMaven(jdk: 'JAVE_HOME', maven: 'MAVEN_HOME') 
-     {   sh "mvn clean package" }
-
-         
-    } }
+    {
+      def mavenHome =  tool name: "MAVEN_HOME", type: "maven"
+      def mavenCMD = "${MAVEN_HOME}/bin/mvn"
+      sh "mvn clean package"
+      
+    } 
+    
+    
+    
     
    // stage ('publish artifact to jrog repo')
    // { steps {  } }
