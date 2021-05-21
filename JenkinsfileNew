@@ -38,4 +38,6 @@ withDockerRegistry(credentialsId: 'DOCKERHUB', url: 'https://index.docker.io/v1/
 	 
     
 }
+}
+}
 
