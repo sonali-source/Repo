@@ -51,9 +51,10 @@ withDockerRegistry(credentialsId: 'DockerHubReg', url: 'https://index.docker.io/
 } }}
      
      
-     stage("Deploy To Kuberates Cluster"){
-  kubernetesDeploy configs: 'springBootMongo.yml', kubeConfig: [path: ''], kubeconfigId: 'kubeconfig', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']
-     }
+     stage("Deploy To Kuberates Cluster")
+     {
+     sh "kubernetesDeploy configs: 'springBootMongo.yml', kubeConfig: [path: '/var/lib/jenkins/workspace/kubeconfig'], kubeconfigId: 'kubetntes', secretName: '', ssh: [sshCredentialsId: 'ssh-k8smaster', sshServer: '3.71.27.155'], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']"
+       }
 	 
     
 //}
