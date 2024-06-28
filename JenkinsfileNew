@@ -11,7 +11,7 @@ pipeline
  // {steps 
  // {sh 'kubernetesDeploy configs: 'springBootMongo.yml', kubeConfig: [path: ''], kubeconfigId: 'KUBERNETES_CLUSTER_CONFIG', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']'}
     
-  //  }
+ }
 
-//}
-//
+}
+
