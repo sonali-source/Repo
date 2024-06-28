@@ -6,11 +6,12 @@ pipeline
         stage('scm checkout')
   { steps {  git branch: 'master', url: 'https://github.com/prakashk0301/maven-project'  } }
     
+//    
+//    stage ('docker build and push')
+ // {steps 
+ // {sh 'kubernetesDeploy configs: 'springBootMongo.yml', kubeConfig: [path: ''], kubeconfigId: 'KUBERNETES_CLUSTER_CONFIG', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']'}
     
-    stage ('docker build and push')
-  {steps 
-  {sh 'kubernetesDeploy configs: 'springBootMongo.yml', kubeConfig: [path: ''], kubeconfigId: 'KUBERNETES_CLUSTER_CONFIG', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']'}
-    
-    }
+  //  }
 
-}
+//}
+//
