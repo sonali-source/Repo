@@ -10,17 +10,17 @@ pipeline {
 
         stage('Maven Clean') {
             steps {
-                sh 'mvn clean'
+                sh 'mvn clean package'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker rmi -f pkw0301/spring-boot-mongo || true'
-                sh 'docker build -t pkw0301/spring-boot-mongo .'
+                sh 'docker rmi -f sonali192/spring-boot-mongo || true'
+                sh 'docker build -t sonali192/spring-boot-mongo .'
             }
         }
-
+/*
         stage('Push Docker Image to ACR/DockerHub') {
             steps {
                 withDockerRegistry(credentialsId: 'DockerHubReg', url: 'https://index.docker.io/v1/') {
@@ -28,7 +28,7 @@ pipeline {
                 }
             }
         }
-/*
+
         stage('Deploy To Kubernetes Cluster') {
             steps {
                 sh """
