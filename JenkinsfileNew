@@ -58,9 +58,10 @@ pipeline {
                 sh "kubernetesDeploy configs: 'springBootMongo.yml', kubeConfig: [path: '/var/lib/jenkins/workspace/kubeconfig'], kubeconfigId: 'kubetntes', secretName: '', ssh: [sshCredentialsId: 'ssh-k8smaster', sshServer: '3.71.27.155'], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']"
             }
         }
+*/
     }
 }
-*/
+
 
 
 
