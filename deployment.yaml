@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ubuntu-nginx-deployment
+  namespace: monitoring
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ubuntu-nginx
+  template:
+    metadata:
+      labels:
+        app: ubuntu-nginx
+    spec:
+      containers:
+      - name: ubuntu-nginx
+        image: infyartifactory.jfrog.io/project-yoda-docker/api-cloud/ubuntu-nginx-image:latest
+        ports:
+        - containerPort: 80
