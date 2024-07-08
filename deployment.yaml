@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ubuntu-nginx-deployment-1
+  name: ubuntu-nginx-deployment-11
   namespace: monitoring
 spec:
   replicas: 3
