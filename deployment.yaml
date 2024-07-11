@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ubuntu-nginx-deployment-11
+  name: ubuntu-nginx-deployment
   namespace: monitoring
 spec:
   replicas: 3
@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - name: ubuntu-nginx
-        image: infyartifactory.jfrog.io/project-yoda-docker/api-cloud/ub:latest
+        image: infyartifactory.jfrog.io/project-yoda-docker/api-cloud/nginx1:latest
         ports:
         - containerPort: 80
