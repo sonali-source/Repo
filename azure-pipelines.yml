@@ -1,0 +1,38 @@
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+stages:
+# ---------------- CI Stage ----------------
+- stage: Build
+  displayName: Build Java App
+  jobs:
+  - job: BuildJob
+    steps:
+    - task: Maven@3
+      inputs:
+        mavenPomFile: 'pom.xml'
+        goals: 'clean package'
+        javaHomeOption: 'JDKVersion'
+        jdkVersionOption: '1.11'
+      displayName: Build with Maven
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: 'target'
+        ArtifactName: 'java-app'
+      displayName: Publish Artifact
+
+# ---------------- CD Stage ----------------
+- stage: Deploy
+  displayName: Deploy Stage
+  dependsOn: Build
+  jobs:
+  - job: DeployJob
+    steps:
+    - script: |
+        echo "Deploying Java application"
+        ls $(Pipeline.Workspace)/java-app
+      displayName: Deploy Artifact
